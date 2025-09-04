@@ -7,6 +7,16 @@ func main() {
 }
 
 func startExchange() {
+
+	var userCurrency = getUserCurrency()
+	var currencyAmount = getUserCurrencyAmount()
+	var currencyToExchange = getCurrencyToExchange(userCurrency)
+
+	exchangedCurrency := exchangeCurrency(currencyAmount, userCurrency, currencyToExchange)
+	fmt.Printf("После обмена %s на %s вы получили %.2f\n", userCurrency, currencyToExchange, exchangedCurrency)
+}
+
+func getUserCurrency() string {
 	var currency string
 	for {
 		fmt.Println("Введите валюту которую вы хотите обменять\nНапример EUR, USD или RUB")
@@ -18,7 +28,10 @@ func startExchange() {
 
 		fmt.Println("Такой валюты нет, попробуйте снова из предложенного списка")
 	}
+	return currency
+}
 
+func getUserCurrencyAmount() int64 {
 	var currencyAmount int64
 	for {
 		fmt.Printf("Введите количество валюты которую вы хотите обменять: ")
@@ -29,11 +42,10 @@ func startExchange() {
 		}
 		fmt.Println("Количество должно быть больше 0, попробуйте снова")
 	}
-
-	getCurrencyToExchange(currency, currencyAmount)
+	return currencyAmount
 }
 
-func getCurrencyToExchange(userCurrency string, amount int64) {
+func getCurrencyToExchange(userCurrency string) string {
 	var currencyToExchange string
 	for {
 		fmt.Println("Введите валюту на которую вы хотите обменять\nНапример EUR, USD или RUB")
@@ -51,9 +63,7 @@ func getCurrencyToExchange(userCurrency string, amount int64) {
 
 		break
 	}
-
-	exhangedCurrency := exchangeCurrency(amount, userCurrency, currencyToExchange)
-	fmt.Printf("После обмена %s на %s вы получили %.2f\n", userCurrency, currencyToExchange, exhangedCurrency)
+	return currencyToExchange
 }
 
 func exchangeCurrency(amount int64, currentCurrency string, currencyToExchange string) float64 {
