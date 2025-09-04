@@ -11,3 +11,14 @@ func main() {
 
 	fmt.Printf("Converted: %.2f\n", convertedValue)
 }
+
+func getUserInput() float64 {
+	var exchangeValue float64
+	fmt.Println("Welcome to the currency exchange! Enter your currency value")
+	fmt.Scanln(&exchangeValue)
+	return exchangeValue
+}
+
+func exchangeCurrency(amount int, currentCurrency string, currencyToExchange string) {
+
+}
